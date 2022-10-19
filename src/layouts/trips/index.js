@@ -4,6 +4,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import { Link } from "react-router-dom";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -91,9 +92,11 @@ function Trips() {
                   Trips List
                 </MDTypography>
                 <Grid item>
-                    <MDButton variant="text" color="white">
-                        <Icon>add_circle</Icon>&nbsp;Add
-                    </MDButton>
+                    <Link to='/trips/add'>
+                        <MDButton variant="text" color="white">
+                            <Icon>add_circle</Icon>&nbsp;Add
+                        </MDButton>
+                    </Link>
                 </Grid>
             </Grid>
               </MDBox>
