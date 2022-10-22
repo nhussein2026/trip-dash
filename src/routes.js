@@ -76,7 +76,7 @@ const routes = [
     icon: <Icon fontSize="small">forest</Icon>,
     route: "/trips/add",
     component: <AddTrip />,
-    sidenav: false
+    sidenav: false,
   },
   {
     type: "collapse",
