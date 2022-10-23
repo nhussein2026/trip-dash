@@ -4,7 +4,6 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import { Link } from "react-router-dom";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -13,6 +12,8 @@ import Icon from "@mui/material/Icon";
 import MDButton from "components/MDButton";
 import DataTable from "examples/Tables/DataTable";
 import { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
 
 function Trips() {
   const columns = [
@@ -23,20 +24,19 @@ function Trips() {
     { Header: "options", accessor: "options", align: "center" },
   ];
   const [rows, setRows] = useState([]);
-  const [tableRows, setTableRows] = useState([]) 
+  const [tableRows, setTableRows] = useState([])
   const deleteTrip = async (id) => {
-      if (window.confirm('Are you sure you want to delete this trip?')) {
-        const deleted = await fetch('http://localhost:3000/trips/' + id, {
-          method: 'DELETE'
-        })
-        const result = await deleted.json()
-        const remainedRows = rows.filter((trip) => {
-          return trip.id != id
-        })
-        setRows(remainedRows)
-        alert(result.messages.join(' '))
-      }
-      
+    if (window.confirm('Are you sure you want to delete this trip?')) {
+      const deleted = await fetch(`${process.env.REACT_APP_API_URL}/trips/${id}`, {
+        method: 'DELETE'
+      })
+      const result = await deleted.json()
+      const remainedRows = rows.filter((trip) => {
+        return trip.id !== id
+      })
+      setRows(remainedRows)
+      alert(result.messages.join(' '))
+    }
   }
   useEffect(() => {
     const jsxRows = rows?.map((trip) => {
@@ -46,12 +46,14 @@ function Trips() {
         cost: <>{trip.cost}</>,
         date: <>{trip.date}</>,
         options: <>
-          <MDButton variant="text" color="error" onClick={() => {deleteTrip(trip.id)}}>
-              <Icon>delete</Icon>&nbsp;delete
+          <MDButton variant="text" color="error" onClick={() => { deleteTrip(trip.id) }}>
+            <Icon>delete</Icon>&nbsp;delete
           </MDButton>
-          <MDButton variant="text" color="dark">
+          <Link to={`/trips/${trip.id}`}>
+            <MDButton variant="text" color="dark">
               <Icon>edit</Icon>&nbsp;edit
-          </MDButton>
+            </MDButton>
+          </Link>
         </>
       };
     });
@@ -59,7 +61,7 @@ function Trips() {
   }, [rows])
   useEffect(() => {
     async function getTrips() {
-      const data = await fetch("http://localhost:3000/trips");
+      const data = await fetch(`${process.env.REACT_APP_API_URL}/trips/`);
       const trips = await data.json()
       setRows(trips.data)
     }
@@ -82,23 +84,26 @@ function Trips() {
                 borderRadius="lg"
                 coloredShadow="info"
               >
-                <Grid 
-                container
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
                 >
-                <MDTypography variant="h6" color="white">
-                  Trips List
-                </MDTypography>
-                <Grid item>
+                  <Grid item>
+                    <MDTypography variant="h6" color="white">
+                      Trips List
+                    </MDTypography>
+                  </Grid>
+                  <Grid item>
                     <Link to='/trips/add'>
-                        <MDButton variant="text" color="white">
-                            <Icon>add_circle</Icon>&nbsp;Add
-                        </MDButton>
+                      <MDButton variant="text" color="white">
+                        <Icon>add_circle</Icon>&nbsp;Add
+                      </MDButton>
                     </Link>
+                  </Grid>
                 </Grid>
-            </Grid>
+
               </MDBox>
               <MDBox pt={3}>
                 <DataTable

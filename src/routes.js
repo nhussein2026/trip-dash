@@ -2,24 +2,18 @@
 =========================================================
 * Material Dashboard 2 React - v2.1.0
 =========================================================
-
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
 Coded by www.creative-tim.com
-
  =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
 /** 
   All of the routes for the Material Dashboard 2 React are added here,
   You can add a new route, customize the routes and delete the routes here.
-
   Once you add a new route on this file it will be visible automatically on
   the Sidenav.
-
   For adding a new route you can follow the existing routes in the routes array.
   1. The `type` key with the `collapse` value is used for a route.
   2. The `type` key with the `title` value is used for a title inside the Sidenav. 
@@ -49,6 +43,7 @@ import Trips from "layouts/trips";
 // @mui icons
 import Icon from "@mui/material/Icon";
 import AddTrip from "layouts/trips/AddTrip";
+import EditTrip from "layouts/trips/EditTrip";
 
 const routes = [
   {
@@ -58,7 +53,7 @@ const routes = [
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
-    sidenav: true
+    sidenav: true,
   },
   {
     type: "collapse",
@@ -67,7 +62,7 @@ const routes = [
     icon: <Icon fontSize="small">forest</Icon>,
     route: "/trips",
     component: <Trips />,
-    sidenav: true
+    sidenav: true,
   },
   {
     type: "collapse",
@@ -80,12 +75,20 @@ const routes = [
   },
   {
     type: "collapse",
+    key: "add-trip",
+    // icon: <Icon fontSize="small">forest</Icon>,
+    route: "/trips/:id",
+    component: <EditTrip />,
+    sidenav: false,
+  },
+  {
+    type: "collapse",
     name: "Tables",
     key: "tables",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/tables",
     component: <Tables />,
-    sidenav: true
+    sidenav: true,
   },
   {
     type: "collapse",
@@ -94,7 +97,7 @@ const routes = [
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/billing",
     component: <Billing />,
-    sidenav: true
+    sidenav: true,
   },
   {
     type: "collapse",
@@ -103,7 +106,7 @@ const routes = [
     icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
     route: "/rtl",
     component: <RTL />,
-    sidenav: true
+    sidenav: true,
   },
   {
     type: "collapse",
@@ -112,7 +115,7 @@ const routes = [
     icon: <Icon fontSize="small">notifications</Icon>,
     route: "/notifications",
     component: <Notifications />,
-    sidenav: true
+    sidenav: true,
   },
   {
     type: "collapse",
@@ -121,7 +124,7 @@ const routes = [
     icon: <Icon fontSize="small">person</Icon>,
     route: "/profile",
     component: <Profile />,
-    sidenav: true
+    sidenav: true,
   },
   {
     type: "collapse",
@@ -130,7 +133,7 @@ const routes = [
     icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
     component: <SignIn />,
-    sidenav: true
+    sidenav: true,
   },
   {
     type: "collapse",
@@ -139,7 +142,7 @@ const routes = [
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/authentication/sign-up",
     component: <SignUp />,
-    sidenav: true
+    sidenav: true,
   },
 ];
 

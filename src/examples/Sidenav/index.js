@@ -2,14 +2,10 @@
 =========================================================
 * Material Dashboard 2 React - v2.1.0
 =========================================================
-
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
 Coded by www.creative-tim.com
-
  =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
@@ -86,9 +82,11 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   // Render all the routes from the routes.js (All the visible items on the Sidenav)
   const renderRoutes = routes.map(({ type, name, icon, title, noCollapse, key, href, route, sidenav }) => {
     let returnValue;
+
     if (!sidenav) {
       return
     }
+
     if (type === "collapse") {
       returnValue = href ? (
         <Link
